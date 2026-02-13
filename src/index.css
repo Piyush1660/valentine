@@ -22,11 +22,13 @@ body {
   background-size: cover;
   background-attachment: fixed;
 }
+/* 🌙 Night Sky */
 .night-sky {
   background: radial-gradient(circle at 20% 30%, #1a1a40, #000000 80%);
   position: relative;
-  overflow: hidden;
 }
+
+/* ⭐ Stars */
 .star {
   position: fixed;
   width: 2px;
@@ -34,7 +36,6 @@ body {
   background: white;
   border-radius: 50%;
   animation: twinkle 2s linear forwards;
-  pointer-events: none;
 }
 
 @keyframes twinkle {
@@ -42,21 +43,72 @@ body {
   50% { opacity: 1; transform: scale(1); }
   100% { opacity: 0; transform: scale(0.5); }
 }
+
+/* 🌠 Shooting Star */
+.shooting-star {
+  position: fixed;
+  width: 120px;
+  height: 2px;
+  background: linear-gradient(90deg, white, transparent);
+  animation: shoot 2s linear forwards;
+}
+
+@keyframes shoot {
+  from { transform: translateX(0) translateY(0); opacity: 1; }
+  to { transform: translateX(120vw) translateY(40vh); opacity: 0; }
+}
+
+/* 💖 Floating Bear */
+.romantic-float {
+  animation: floatLove 4s ease-in-out infinite;
+}
+
+@keyframes floatLove {
+  0% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-20px) scale(1.05); }
+  100% { transform: translateY(0px) scale(1); }
+}
+
+/* 💌 Love Letter */
 .typing-text {
   opacity: 0;
   transform: translateY(20px);
   animation: loveReveal 4s ease forwards;
   animation-delay: 1s;
   line-height: 1.6;
+  text-shadow: 0 0 10px pink, 0 0 20px hotpink;
 }
 
 @keyframes loveReveal {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  100% {
+  to {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* 📸 Slideshow */
+.sky-slideshow {
+  margin-top: 20px;
+  height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sky-photo {
+  height: 250px;
+  border-radius: 20px;
+  box-shadow: 0 0 30px rgba(255, 192, 203, 0.6);
+  animation: fadeSlide 4s ease-in-out;
+  transition: transform 0.5s ease;
+}
+
+.sky-photo:hover {
+  transform: scale(1.05);
+}
+
+@keyframes fadeSlide {
+  0% { opacity: 0; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1); }
+  100% { opacity: 1; }
 }
