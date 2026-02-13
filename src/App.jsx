@@ -8,7 +8,6 @@ export default function Page() {
   const [noCount, setNoCount] = useState(0);
   const [yesPressed, setYesPressed] = useState(false);
   const yesButtonSize = noCount * 20 + 16;
-  const [playMusic, setPlayMusic] = useState(false);
   const audioRef = useRef(null);
 
 
@@ -74,11 +73,11 @@ export default function Page() {
               style={{ fontSize: yesButtonSize }}
               onClick={() => {
                 setYesPressed(true);
-                setPlayMusic(true);
                 setTimeout(() => {
                   audioRef.current?.play();
                 }, 300);
               }}
+              
               
             >
               Yes
@@ -92,6 +91,7 @@ export default function Page() {
           </div>
         </>
       )}
+      <audio ref={audioRef} src={song} loop hidden />
       <Footer />
     </div>
   );
