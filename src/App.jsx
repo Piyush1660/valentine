@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import lovesvg from "./assets/All You Need Is Love SVG Cut File.svg";
 import lovesvg2 from "./assets/Love In The Air SVG Cut File.svg";
 import song from "./assets/song.mp3";
@@ -10,7 +10,22 @@ export default function Page() {
   const yesButtonSize = noCount * 20 + 16;
   const audioRef = useRef(null);
 
-
+  useEffect(() => {
+    if (!yesPressed) return;
+  
+    const interval = setInterval(() => {
+      const star = document.createElement("div");
+      star.className = "star";
+      star.style.top = Math.random() * 100 + "vh";
+      star.style.left = Math.random() * 100 + "vw";
+      document.body.appendChild(star);
+  
+      setTimeout(() => star.remove(), 2000);
+    }, 200);
+  
+    return () => clearInterval(interval);
+  }, [yesPressed]);
+  
   const handleNoClick = () => {
     setNoCount(noCount + 1);
   };
@@ -42,13 +57,25 @@ export default function Page() {
   };
 
   return (
-    <div className="overflow-hidden flex flex-col items-center justify-center pt-4 h-screen -mt-16 selection:bg-rose-600 selection:text-white text-zinc-900">
+<div
+  className={`overflow-hidden flex flex-col items-center justify-center pt-4 h-screen -mt-16 selection:bg-rose-600 selection:text-white ${
+    yesPressed
+      ? "bg-black text-white night-sky"
+      : "text-zinc-900"
+  }`}
+>
       {yesPressed ? (
         <>
           <img src="https://media.tenor.com/gUiu1zyxfzYAAAAi/bear-kiss-bear-kisses.gif" />
           <div className="text-4xl md:text-6xl font-bold my-4">
             Ok Yayyyyy!!!
           </div>
+          <p className="mt-6 text-xl md:text-2xl typing-text text-center max-w-xl">
+    From the moment you came into my life,
+    everything became brighter and more beautiful.
+    You are my happiness, my peace, my forever.
+    I love you more than words can ever explain 💖 Gulaabooooo 
+  </p>
         </>
       ) : (
         <>
