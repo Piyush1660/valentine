@@ -1,11 +1,16 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import lovesvg from "./assets/All You Need Is Love SVG Cut File.svg";
 import lovesvg2 from "./assets/Love In The Air SVG Cut File.svg";
+import song from "./assets/song.mp3";
+
 
 export default function Page() {
   const [noCount, setNoCount] = useState(0);
   const [yesPressed, setYesPressed] = useState(false);
   const yesButtonSize = noCount * 20 + 16;
+  const [playMusic, setPlayMusic] = useState(false);
+  const audioRef = useRef(null);
+
 
   const handleNoClick = () => {
     setNoCount(noCount + 1);
@@ -67,7 +72,14 @@ export default function Page() {
             <button
               className={`bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg mr-4`}
               style={{ fontSize: yesButtonSize }}
-              onClick={() => setYesPressed(true)}
+              onClick={() => {
+                setYesPressed(true);
+                setPlayMusic(true);
+                setTimeout(() => {
+                  audioRef.current?.play();
+                }, 300);
+              }}
+              
             >
               Yes
             </button>
